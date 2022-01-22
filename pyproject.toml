@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "django-ci-cd"
+version = "0.1.0"
+description = ""
+authors = ["Fabio Soares Figueiredo <fabiosoaresf@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+#pandas = "1.2.3"
+Django = "4.0"
+#watchtower = "1.0.6" #log handler for Amazon Web Services CloudWatch Logs.
+#APScheduler = "3.7.0" #scheduler of etls
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^6"
+#pytest-integration = "^0.2"
+pytest-xdist = "^2.2"  # poetry run pytest -n 10
+filelock = "3.0.12"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
