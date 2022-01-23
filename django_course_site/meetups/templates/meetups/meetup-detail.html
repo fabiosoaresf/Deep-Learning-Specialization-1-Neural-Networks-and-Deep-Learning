@@ -1,28 +1,32 @@
+{% extends 'meetups/base/base.html' %}
 {% load static %}
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ selected_meetup.title }}</title>
-    <link rel="stylesheet", href="{% static 'meetups/styles/base.css' %}">
+{% block title %}
+    {{ meetup.title }}
+{% endblock %}
+
+{% block site_css %}
     <link rel="stylesheet", href="{% static 'meetups/styles/meetup-detail.css' %}">
-</head>
-<body>
-    <main>
+{% endblock %}
+
+{% block main_heading %}
+    <h1>{{ meetup.title }}</h1>
+{% endblock %}
+
+{% block body %}
+
+    {% if meetup_found %}
         <article>
-            <img src="" alt="">
+            <img id="main-image" src="{{ meetup.image.url }}" alt="{{ meetup.title }}">
             <section id="location">
                 {# this id="location" is WRONG. I think is id="address"#}
                 <h2>Meetup Location</h2>
-                <address>This meetup takes place in <span>LOCATION</span> (ADDRESS).</address>
+                <address>This meetup takes place in <span>{{ meetup.location.name }}</span> ({{ meetup.location.address }}).</address>
             </section>
 
             <section id="details">
                 <h2>What's This Meetup About?</h2>
-                <p>{{ selected_meetup.description }}</p>
+                <p>{{ meetup.description }}</p>
                 <footer>
                     <p>Need more details? Please <a href="">contact the organizer</a> (but don't spam us ;-) )</p>
                 </footer>
@@ -33,6 +37,8 @@
                 FORM
             </section>
         </article>
-    </main>
-</body>
-</html>
+    {% else %}
+        <p>Meetup was not found for this slug. Sorry</p>
+    {% endif %}
+
+{% endblock %}
